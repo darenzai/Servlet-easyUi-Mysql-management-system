@@ -1,0 +1,120 @@
+1、修改tomcat的端口号为8081，在MyEclipse中配置tomcat，然后启动tomcat
+   在浏览器中输入localhost:8081回车，看到tomcat的猫
+2、在MyEclipse导入web project或者新建web project
+3、在src下新建包，在包下新建类
+   （说明：Java程序的构成都是由类构成的）
+4、让创建普通类成为一个具有接收请求和相应请求的类
+   4.1让该类继承HttpServlet,HttpServlet需要导包
+   4.2在该类中调出service方法（doGet和doPost方法），在service方法中完成服务器端要做的事情
+   4.3在web.xml文件中对该类进行配置
+5、将写好的项目部署到tomcat服务器中，使用浏览器访问http://localhost:8081/项目名/url-pattern地址
+
+
+mysql数据库   tarena/123456
+1、库的操作
+2、表的操作
+   create database tedu;
+   use tedu;
+   create table emp(
+       id int primary key,
+       name varchar(10),
+       age int,
+       salary double
+   );
+   insert into emp values(1,'zs',30,5000);
+   insert into emp values(2,'ls',35,1000);
+   insert into emp values(3,'ww',20,9000);
+   insert into emp values(4,'xh',25,6000);
+   select * from emp;
+
+一、改tomcat的端口号8081
+二、将tomcat服务器配置到myeclipse中，启动tomcat,用浏览器输入localhost:8081，看猫
+三、将web项目导入myeclipse中
+四、准备mysql数据库的相关数据
+五、将web项目部署到tomcat服务器中，测试项目是否正常
+
+
+JSP
+  Java Server Page:java服务器端的一种页面技术，是sun公司制定的一种服务器端动态页面生成技术的规范。
+     因为直接使用servlet技术生成页面，如果页面比较复杂，内容比较多，用servlet去生成代码会过于繁琐，并且难以维护。
+    使用JSP技术去实现复杂的页面，会更容易编写和维护。 
+xx.html  一个HTML文件（一个页面） 是一种静态页面
+     组成：标记<>和内容，css,javascript
+xx.jsp  一个jsp文件（一个页面） 是服务器端一种动态页面技术
+     组成：1)html(标记<>和内容),css,javascript内容
+       2)写Java代码    
+                         第一种形式：代码片段/块     语法：<%   %>
+                         第二种形式：代码表达式       语法：<%=  %>
+       3)page指令   在jsp页面的第一行加入  <%@page   %>
+                  pageEncoding=""  指定jsp页面在保存时的中文编码
+                  import=""  当在jsp页面中用到Java提供的类，需要导包是用该指令
+       4)隐含对象（out对象，request对象 ,response对象）
+
+中文处理
+页面-->服务器端（servlet）-->数据库端(jdbc,mysql)
+
+数据库端
+  1）打开DB Browser视图，配置mysql数据库的链接，url地址指定中文编码
+    jdbc:mysql://localhost:3306/tedu?useUnicode=true&characterEncoding=utf8
+  2）在项目中新建一个xx.sql文件，该文件用于配合DB Browser执行sql语句
+           注意：修改xx.sql文件的编码格式（选中文件->右击->Properties->Text file encoding->utf-8）
+  3）在xx.sql文件中创建库，创建表，准备相关数据
+           注意：创建库的时候指定编码    create database tedu default character set utf8
+           
+页面端（浏览器端）
+  1)在page指令中加入pageEncoding（此jsp页面保存中文指定的编码）和contentType（提交数据时中文指定的编码）
+    <%@page pageEncoding="utf-8" contentType="text/html;charset=utf-8"%>
+  2）表单的提交方式  method="post"
+  
+服务器端（servlet）
+  1）每一个servlet中凡是出现jdbc链接数据库的代码，url地址都需要指定编码
+  2）在每一个servlet中，在service方法中的第一行，添加接受参数中文的指定编码
+    request.setCharacterEncoding("utf-8");
+    response.setContentType("text/html;charset=utf-8");
+
+
+
+准备工作：
+1、tomcat修改端口号为8081
+2、tomcat部署到myeclipse中，启动，测试
+3、将ems项目导入myeclipse中
+4、将db.sql中的内容在mysql客户端中运行
+
+MVC设计模式
+   Model模型层                                View视图层                Controller控制层
+   model包中                                    WebRoot下                   web包下
+ dao工厂(数据库相关操作)     （jsp页面）                （servlet）
+
+
+ems员工信息管理系统
+一、员工信息的查询
+   Model模型层： model包下 DBUtil Emp EmpDao
+   Controller控制层:web包下  EmpListServlet
+   View视图层: emplist.jsp
+
+二、员工信息的删除
+   Controller控制层： web包下 EmpDeleteServlet
+   Model模型层：model包下 EmpDao-->deleteEmp()方法
+   View视图层：emplist.jsp页面   <a href="????">删除员工</a>
+
+三、员工信息的插入
+   C层：web包下  EmpAddServlet
+   M层：model包下  EmpDao
+   V层：empAdd.jsp页面
+
+四、员工信息的修改
+        自己思考完成
+
+
+
+
+
+
+
+
+
+
+
+
+
+

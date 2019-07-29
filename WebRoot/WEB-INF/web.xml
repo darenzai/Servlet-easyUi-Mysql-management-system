@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" 
+	xmlns="http://java.sun.com/xml/ns/javaee" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+	http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+  
+  <!-- 对EmpListServlet进行配置 -->
+  <servlet>
+  	 <servlet-name>EmpList</servlet-name> 
+  	 <servlet-class>web.EmpListServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+     <servlet-name>EmpList</servlet-name>
+     <url-pattern>/list</url-pattern>
+  </servlet-mapping>
+  
+  <!-- 对EmpDeleteServlet进行配置 -->
+  <servlet>
+  	<servlet-name>EmpDelete</servlet-name>
+  	<servlet-class>web.EmpDeleteServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>EmpAdd</servlet-name>
+    <servlet-class>web.EmpAddServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+  	<servlet-name>EmpDelete</servlet-name>
+  	<url-pattern>/delete</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>EmpAdd</servlet-name>
+    <url-pattern>/add</url-pattern>
+  </servlet-mapping>
+  
+  
+</web-app>
